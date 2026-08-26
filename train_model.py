@@ -34,7 +34,7 @@ accuracy = accuracy_score(y_test, predictions)
 
 print(f"Model accuracy: {accuracy * 100:.2f}%")
 
-# 8. Try it on your own example messages
+# 8. My example/test messages
 test_messages = [
     "URGENT: Your bank account has been suspended, click here to verify",
     "Apply in one minute, work from home and earn 500,000",
