@@ -1,3 +1,4 @@
+import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -49,3 +50,6 @@ print("\n--- Testing custom messages ---")
 for message, prediction in zip(test_messages, test_predictions):
     result = "SCAM" if prediction == 1 else "NOT SCAM"
     print(f"Message: {message}\nPrediction: {result}\n")
+
+joblib.dump(model, "scam_model.pkl")
+joblib.dump(vectorizer, "vectorizer.pkl")
