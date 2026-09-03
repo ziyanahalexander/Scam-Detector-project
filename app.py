@@ -1,6 +1,8 @@
 import streamlit as st
 import joblib
 import requests
+import pytesseract
+from PIL import Image
 from api_key import API_KEY
 
 # Load the trained model and vectorizer once when the app starts
@@ -28,13 +30,27 @@ In 2-3 short, plain-language sentences suitable for an older adult with limited 
 # --- The actual webpage layout starts here ---
 
 st.title("Scam Message Detector")
-st.write("Paste a suspicious email or text message below to check if it looks like a scam.")
+st.write("Paste a suspicious message, or upload a screenshot of one, to check if it looks like a scam.")
 
-message = st.text_area("Message to check:", height=150)
+input_method = st.radio("How would you like to check a message?", ["Paste text", "Upload a screenshot"])
+
+message = ""
+
+if input_method == "Paste text":
+    message = st.text_area("Message to check:", height=150)
+else:
+    uploaded_image = st.file_uploader("Upload a screenshot", type=["png", "jpg", "jpeg"])
+    if uploaded_image is not None:
+        image = Image.open(uploaded_image)
+        st.image(image, caption="Uploaded screenshot", width=400)
+        with st.spinner("Reading text from image..."):
+            message = pytesseract.image_to_string(image)
+        st.write("**Text found in image:**")
+        st.write(message)
 
 if st.button("Check this message"):
     if message.strip() == "":
-        st.warning("Please paste a message first.")
+        st.warning("Please paste a message or upload a screenshot first.")
     else:
         message_vec = vectorizer.transform([message])
         prediction = model.predict(message_vec)[0]
@@ -46,4 +62,4 @@ if st.button("Check this message"):
             st.write("**Why it's suspicious:**")
             st.write(explanation)
         else:
-            st.success("✅ This does not look like a scam")
+            st.success("✅ This does not look like a scam")       
