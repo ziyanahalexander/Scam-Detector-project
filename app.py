@@ -3,7 +3,7 @@ import joblib
 import requests
 import pytesseract
 from PIL import Image
-from api_key import API_KEY
+API_KEY = st.secrets["API_KEY"]
 
 # Load the trained model and vectorizer once when the app starts
 model = joblib.load("scam_model.pkl")

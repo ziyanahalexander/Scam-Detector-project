@@ -1,3 +1,7 @@
+streamlit
 pandas
 scikit-learn
-streamlit
+joblib
+requests
+pytesseract
+pillow
