@@ -2,6 +2,10 @@
 
 A machine-learning and AI-powered tool that helps users identify potentially fraudulent messages and understand why they may be suspicious.
 
+### 🔗 Try the Live App
+
+[Open the Scam Message Detector](https://scam-detector-project-cd8fsjbssvcjz9ammiwpdd.streamlit.app/)
+
 ## About the Project
 
 Scam Message Detector is a tool designed to help people identify potentially fraudulent or suspicious messages. While it can be used by anyone, I built the project with older adults and people who may be less familiar with navigating the internet in mind.
