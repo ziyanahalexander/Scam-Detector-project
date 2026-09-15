@@ -45,8 +45,7 @@ else:
         st.image(image, caption="Uploaded screenshot", width=400)
         with st.spinner("Reading text from image..."):
             message = pytesseract.image_to_string(image)
-        st.write("**Text found in image:**")
-        st.write(message)
+
 
 if st.button("Check this message"):
     if message.strip() == "":
